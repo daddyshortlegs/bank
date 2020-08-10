@@ -1,4 +1,4 @@
-package cucumber;
+package com.andy.bank.stepdefs;
 
 import com.andy.bank.AccountService;
 import com.andy.bank.BankAccountService;
