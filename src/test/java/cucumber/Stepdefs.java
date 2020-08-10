@@ -1,25 +1,41 @@
 package cucumber;
 
+import com.andy.bank.AccountService;
+import com.andy.bank.BankAccountService;
+import io.cucumber.java.Before;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.junit.jupiter.MockitoExtension;
 
+@ExtendWith(MockitoExtension.class)
 public class Stepdefs {
+    private AccountService accountService;
+
+    @Before
+    public void before() {
+        accountService = new BankAccountService();
+    }
 
     @Given("a client makes a deposit of {int} on {string}")
-    public void a_client_makes_a_deposit_of_on(Integer amount, String date) {
+    public void a_client_makes_a_deposit_of_on(int amount, String date) {
+        accountService.deposit(amount);
     }
 
     @Given("a deposit of {int} on {string}")
     public void a_deposit_of_on(Integer amount, String date) {
+        accountService.deposit(amount);
     }
 
     @Given("a withdrawal of {int} on {string}")
     public void a_withdrawal_of_on(Integer amount, String date) {
+        accountService.withdraw(amount);
     }
 
     @When("they print their bank statement")
     public void they_print_their_bank_statement() {
+        accountService.printStatement();
     }
 
     @Then("they would see")

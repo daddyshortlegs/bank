@@ -12,6 +12,8 @@ repositories {
 dependencies {
     testImplementation 'org.junit.jupiter:junit-jupiter-api:5.3.1'
     testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.3.1'
+    testImplementation group: 'org.mockito', name: 'mockito-core', version: '3.4.6'
+    testImplementation 'org.mockito:mockito-junit-jupiter:3.4.6'
     testImplementation 'io.cucumber:cucumber-java:6.2.2'
     testImplementation 'io.cucumber:cucumber-junit:6.2.2'
 }
