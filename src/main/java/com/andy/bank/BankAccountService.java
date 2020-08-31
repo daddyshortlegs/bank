@@ -1,8 +1,13 @@
 package com.andy.bank;
 
 public class BankAccountService implements AccountService {
-    public BankAccountService(TransactionDate transactionDate) {
+    private final TransactionDate transactionDate;
+    private final ConsolePrinter printer;
 
+    public BankAccountService(TransactionDate transactionDate, ConsolePrinter printer) {
+
+        this.transactionDate = transactionDate;
+        this.printer = printer;
     }
 
     @Override
@@ -17,6 +22,6 @@ public class BankAccountService implements AccountService {
 
     @Override
     public void printStatement() {
-
+        printer.output("Date       | Amount | Balance");
     }
 }
