@@ -1,9 +1,6 @@
 package com.andy.bank.stepdefs;
 
-import com.andy.bank.AccountService;
-import com.andy.bank.BankAccountService;
-import com.andy.bank.ConsolePrinter;
-import com.andy.bank.TransactionDate;
+import com.andy.bank.*;
 import io.cucumber.java.Before;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
@@ -23,11 +20,13 @@ public class Stepdefs {
     private TransactionDate transactionDate;
     @Mock
     private ConsolePrinter consolePrinter;
+    @Mock
+    private Account account;
 
     @Before
     public void before() {
         MockitoAnnotations.openMocks(this);
-        accountService = new BankAccountService(transactionDate, consolePrinter);
+        accountService = new BankAccountService(transactionDate, consolePrinter, account);
     }
 
     @Given("a client makes a deposit of {int} on {string}")

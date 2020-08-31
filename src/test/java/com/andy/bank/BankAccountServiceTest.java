@@ -5,6 +5,7 @@ import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Mockito.verify;
 
 public class BankAccountServiceTest {
@@ -12,12 +13,14 @@ public class BankAccountServiceTest {
     private TransactionDate transactionDate;
     @Mock
     private ConsolePrinter printer;
+    private Account account;
     private BankAccountService service;
 
     @BeforeEach
     public void before() {
         MockitoAnnotations.openMocks(this);
-        service = new BankAccountService(transactionDate, printer);
+        account = new Account();
+        service = new BankAccountService(transactionDate, printer, account);
     }
 
     @Test
@@ -25,4 +28,19 @@ public class BankAccountServiceTest {
         service.printStatement();
         verify(printer).output("Date       | Amount | Balance");
     }
+
+    @Test
+    void shouldHaveBalanceOf10_whenIDeposit() {
+        service.deposit(10);
+        int balance = account.getBalance();
+        assertThat(balance).isEqualTo(10);
+    }
+
+    @Test
+    void shouldHaveBalanceOf20_whenIDeposit() {
+        service.deposit(20);
+        int balance = account.getBalance();
+        assertThat(balance).isEqualTo(20);
+    }
+
 }
