@@ -18,7 +18,7 @@ public class BankAccountService implements AccountService {
 
     @Override
     public void withdraw(int amount) {
-
+        account.withdraw(amount);
     }
 
     @Override

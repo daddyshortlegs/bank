@@ -43,4 +43,11 @@ public class BankAccountServiceTest {
         assertThat(balance).isEqualTo(20);
     }
 
+    @Test
+    void shouldHaveNegativeBalance_whenIWithdraw() {
+        service.withdraw(10);
+        int balance = account.getBalance();
+        assertThat(balance).isEqualTo(-10);
+    }
+
 }
