@@ -62,4 +62,15 @@ public class BankAccountServiceTest {
         List<Transaction> transactions = account.getTransactions();
         assertThat(transactions).contains(new Transaction(10, date));
     }
+
+    @Test
+    void shouldCreateATransaction_whenIWithdraw() {
+        String date = "11/02/2016";
+        given(transactionDate.current()).willReturn(date);
+        service.withdraw(20);
+
+        List<Transaction> transactions = account.getTransactions();
+        assertThat(transactions).contains(new Transaction(-20, date));
+
+    }
 }

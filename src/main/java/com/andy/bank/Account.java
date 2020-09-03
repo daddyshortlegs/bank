@@ -21,6 +21,8 @@ public class Account {
 
     public void withdraw(int amount) {
         balance -= amount;
+        Transaction transaction = new Transaction(-amount, transactionDate.current());
+        transactions.add(transaction);
     }
 
     public int getBalance() {
