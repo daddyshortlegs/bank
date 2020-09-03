@@ -4,8 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Account {
-
-    private int balance;
     private TransactionDate transactionDate;
     private List<Transaction> transactions = new ArrayList<>();
 
@@ -14,18 +12,20 @@ public class Account {
     }
 
     public void deposit(int amount) {
-        balance += amount;
         Transaction transaction = new Transaction(amount, transactionDate.current());
         transactions.add(transaction);
     }
 
     public void withdraw(int amount) {
-        balance -= amount;
         Transaction transaction = new Transaction(-amount, transactionDate.current());
         transactions.add(transaction);
     }
 
     public int getBalance() {
+        int balance = 0;
+        for (Transaction transaction : transactions) {
+            balance += transaction.getAmount();
+        }
         return balance;
     }
 

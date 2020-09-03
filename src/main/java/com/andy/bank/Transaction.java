@@ -9,6 +9,14 @@ public class Transaction {
         this.date = date;
     }
 
+    public int getAmount() {
+        return amount;
+    }
+
+    public String getDate() {
+        return date;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
