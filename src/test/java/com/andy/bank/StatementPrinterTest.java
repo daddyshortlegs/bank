@@ -52,7 +52,7 @@ class StatementPrinterTest {
 
         verify(consolePrinter).output(
                 "Date       | Amount | Balance\n" +
-                        "13/01/2012 | -10    | 10\n"
+                        "13/01/2012 | -10    | -10\n"
         );
     }
 
@@ -65,8 +65,8 @@ class StatementPrinterTest {
 
         verify(consolePrinter).output(
                 "Date       | Amount | Balance\n" +
-                        "13/01/2012 | -10    | 10\n" +
-                        "14/01/2012 | 15     | 10\n"
+                        "13/01/2012 | -10    | -10\n" +
+                        "14/01/2012 | 15     | 5\n"
         );
     }
 

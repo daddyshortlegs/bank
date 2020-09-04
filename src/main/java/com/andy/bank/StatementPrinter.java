@@ -10,11 +10,12 @@ public class StatementPrinter {
     }
 
     public void print(List<Transaction> transactions) {
-        String output = "";
-        output += "Date       | Amount | Balance\n";
+        String output = "Date       | Amount | Balance\n";
 
+        int balance = 0;
         for (Transaction transaction : transactions) {
-            output += String.format("%s | %-7d| 10\n", transaction.getDate(), transaction.getAmount());
+            balance += transaction.getAmount();
+            output += String.format("%s | %-7d| %d\n", transaction.getDate(), transaction.getAmount(), balance);
         }
         consolePrinter.output(output);
     }
