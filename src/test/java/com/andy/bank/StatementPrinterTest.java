@@ -15,16 +15,16 @@ class StatementPrinterTest {
 
     @Mock
     private ConsolePrinter consolePrinter;
+    private StatementPrinter statementPrinter;
 
     @BeforeEach
     void setup() {
         MockitoAnnotations.openMocks(this);
+        statementPrinter = new StatementPrinter(consolePrinter);
     }
 
     @Test
     void shouldReturnEmptyStatement() {
-        StatementPrinter statementPrinter = new StatementPrinter(consolePrinter);
-
         List<Transaction> transactions = new ArrayList<>();
         statementPrinter.print(transactions);
 
@@ -33,8 +33,6 @@ class StatementPrinterTest {
 
     @Test
     void shouldReturnStatement_withADeposit() {
-        StatementPrinter statementPrinter = new StatementPrinter(consolePrinter);
-
         List<Transaction> transactions = new ArrayList<>();
         transactions.add(new Transaction(10, "13/01/2012"));
         statementPrinter.print(transactions);
