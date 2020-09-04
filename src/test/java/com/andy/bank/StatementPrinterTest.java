@@ -1,6 +1,7 @@
 package com.andy.bank;
 
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
@@ -39,9 +40,21 @@ class StatementPrinterTest {
 
         verify(consolePrinter).output(
                 "Date       | Amount | Balance\n" +
-                        "13/01/2012 | 10 | 10\n"
+                        "13/01/2012 | 10     | 10\n"
         );
+    }
 
+    @Test
+    @Disabled
+    void shouldReturnStatement_withAWithdrawal() {
+        List<Transaction> transactions = new ArrayList<>();
+        transactions.add(new Transaction(-10, "13/01/2012"));
+        statementPrinter.print(transactions);
+
+        verify(consolePrinter).output(
+                "Date       | Amount | Balance\n" +
+                        "13/01/2012 | -10 | 10\n"
+        );
     }
 
 }

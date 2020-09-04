@@ -14,7 +14,7 @@ public class StatementPrinter {
         output += "Date       | Amount | Balance\n";
 
         for (Transaction transaction : transactions) {
-            output += "13/01/2012 | 10 | 10\n";
+            output += String.format("13/01/2012 | %-7d| 10\n", 10);
         }
         consolePrinter.output(output);
     }
