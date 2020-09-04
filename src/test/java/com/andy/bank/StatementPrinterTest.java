@@ -45,7 +45,6 @@ class StatementPrinterTest {
     }
 
     @Test
-    @Disabled
     void shouldReturnStatement_withAWithdrawal() {
         List<Transaction> transactions = new ArrayList<>();
         transactions.add(new Transaction(-10, "13/01/2012"));
@@ -53,7 +52,7 @@ class StatementPrinterTest {
 
         verify(consolePrinter).output(
                 "Date       | Amount | Balance\n" +
-                        "13/01/2012 | -10 | 10\n"
+                        "13/01/2012 | -10    | 10\n"
         );
     }
 
