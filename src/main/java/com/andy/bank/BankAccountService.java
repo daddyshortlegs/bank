@@ -4,11 +4,13 @@ public class BankAccountService implements AccountService {
     private final TransactionDate transactionDate;
     private final ConsolePrinter printer;
     private Account account;
+    private StatementPrinter statementPrinter;
 
-    public BankAccountService(TransactionDate transactionDate, ConsolePrinter printer, Account account) {
+    public BankAccountService(TransactionDate transactionDate, ConsolePrinter printer, Account account, StatementPrinter statementPrinter) {
         this.transactionDate = transactionDate;
         this.printer = printer;
         this.account = account;
+        this.statementPrinter = statementPrinter;
     }
 
     @Override
@@ -23,6 +25,7 @@ public class BankAccountService implements AccountService {
 
     @Override
     public void printStatement() {
+        statementPrinter.print(account.getTransactions());
         printer.output("Date       | Amount | Balance");
     }
 }

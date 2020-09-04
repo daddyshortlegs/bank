@@ -22,11 +22,13 @@ public class Stepdefs {
     private ConsolePrinter consolePrinter;
     @Mock
     private Account account;
+    private StatementPrinter statementPrinter;
 
     @Before
     public void before() {
         MockitoAnnotations.openMocks(this);
-        accountService = new BankAccountService(transactionDate, consolePrinter, account);
+        statementPrinter = new StatementPrinter();
+        accountService = new BankAccountService(transactionDate, consolePrinter, account, statementPrinter);
     }
 
     @Given("a client makes a deposit of {int} on {string}")

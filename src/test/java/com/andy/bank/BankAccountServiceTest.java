@@ -5,6 +5,7 @@ import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -16,6 +17,9 @@ public class BankAccountServiceTest {
     private TransactionDate transactionDate;
     @Mock
     private ConsolePrinter printer;
+    @Mock
+    private StatementPrinter statementPrinter;
+
     private Account account;
     private BankAccountService service;
 
@@ -23,13 +27,7 @@ public class BankAccountServiceTest {
     public void before() {
         MockitoAnnotations.openMocks(this);
         account = new Account(transactionDate);
-        service = new BankAccountService(transactionDate, printer, account);
-    }
-
-    @Test
-    void shouldPrinterEmptyStatement() {
-        service.printStatement();
-        verify(printer).output("Date       | Amount | Balance");
+        service = new BankAccountService(transactionDate, printer, account, statementPrinter);
     }
 
     @Test
@@ -55,22 +53,48 @@ public class BankAccountServiceTest {
 
     @Test
     void shouldCreateATransaction_whenIDeposit() {
-        String date = "10/01/2012";
-        given(transactionDate.current()).willReturn(date);
-        service.deposit(10);
+        deposit("10/01/2012", 10);
 
         List<Transaction> transactions = account.getTransactions();
-        assertThat(transactions).contains(new Transaction(10, date));
+        assertThat(transactions).contains(new Transaction(10, "10/01/2012"));
     }
 
     @Test
     void shouldCreateATransaction_whenIWithdraw() {
-        String date = "11/02/2016";
-        given(transactionDate.current()).willReturn(date);
-        service.withdraw(20);
+        withdraw("11/02/2016", 20);
 
         List<Transaction> transactions = account.getTransactions();
-        assertThat(transactions).contains(new Transaction(-20, date));
-
+        assertThat(transactions).contains(new Transaction(-20, "11/02/2016"));
     }
+
+    @Test
+    void shouldPrinterEmptyStatement() {
+        service.printStatement();
+        verify(printer).output("Date       | Amount | Balance");
+    }
+
+    @Test
+    void shouldPrintTransactions() {
+        deposit("14/01/2012", 10);
+        deposit("15/01/2012", 15);
+
+        service.printStatement();
+
+        List<Transaction> transactions = new ArrayList<>();
+        transactions.add(new Transaction(10, "14/01/2012"));
+        transactions.add(new Transaction(15, "15/01/2012"));
+
+        verify(statementPrinter).print(transactions);
+    }
+
+    private void deposit(String date, int amount) {
+        given(transactionDate.current()).willReturn(date);
+        service.deposit(amount);
+    }
+
+    private void withdraw(String date, int amount) {
+        given(transactionDate.current()).willReturn(date);
+        service.withdraw(amount);
+    }
+
 }
