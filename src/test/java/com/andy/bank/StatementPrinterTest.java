@@ -56,4 +56,18 @@ class StatementPrinterTest {
         );
     }
 
+    @Test
+    void shouldReturnStatement_withAFewTransactions() {
+        List<Transaction> transactions = new ArrayList<>();
+        transactions.add(new Transaction(-10, "13/01/2012"));
+        transactions.add(new Transaction(15, "14/01/2012"));
+        statementPrinter.print(transactions);
+
+        verify(consolePrinter).output(
+                "Date       | Amount | Balance\n" +
+                        "13/01/2012 | -10    | 10\n" +
+                        "14/01/2012 | 15     | 10\n"
+        );
+    }
+
 }
