@@ -28,8 +28,22 @@ class StatementPrinterTest {
         List<Transaction> transactions = new ArrayList<>();
         statementPrinter.print(transactions);
 
-        verify(consolePrinter).output("Date       | Amount | Balance");
+        verify(consolePrinter).output("Date       | Amount | Balance\n");
     }
 
+    @Test
+    void shouldReturnStatement_withADeposit() {
+        StatementPrinter statementPrinter = new StatementPrinter(consolePrinter);
+
+        List<Transaction> transactions = new ArrayList<>();
+        transactions.add(new Transaction(10, "13/01/2012"));
+        statementPrinter.print(transactions);
+
+        verify(consolePrinter).output(
+                "Date       | Amount | Balance\n" +
+                        "13/01/2012 | 10 | 10\n"
+        );
+
+    }
 
 }
