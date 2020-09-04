@@ -27,7 +27,7 @@ public class Stepdefs {
     @Before
     public void before() {
         MockitoAnnotations.openMocks(this);
-        statementPrinter = new StatementPrinter();
+        statementPrinter = new StatementPrinter(consolePrinter);
         accountService = new BankAccountService(transactionDate, consolePrinter, account, statementPrinter);
     }
 
