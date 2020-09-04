@@ -26,6 +26,5 @@ public class BankAccountService implements AccountService {
     @Override
     public void printStatement() {
         statementPrinter.print(account.getTransactions());
-        printer.output("Date       | Amount | Balance");
     }
 }

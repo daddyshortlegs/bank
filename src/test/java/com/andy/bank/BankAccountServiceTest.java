@@ -68,12 +68,6 @@ public class BankAccountServiceTest {
     }
 
     @Test
-    void shouldPrinterEmptyStatement() {
-        service.printStatement();
-        verify(printer).output("Date       | Amount | Balance");
-    }
-
-    @Test
     void shouldPrintTransactions() {
         deposit("14/01/2012", 10);
         deposit("15/01/2012", 15);
