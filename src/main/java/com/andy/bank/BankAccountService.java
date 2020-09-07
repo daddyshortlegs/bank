@@ -1,14 +1,10 @@
 package com.andy.bank;
 
 public class BankAccountService implements AccountService {
-    private final TransactionDate transactionDate;
-    private final ConsolePrinter printer;
     private Account account;
     private StatementPrinter statementPrinter;
 
     public BankAccountService(TransactionDate transactionDate, ConsolePrinter printer, Account account, StatementPrinter statementPrinter) {
-        this.transactionDate = transactionDate;
-        this.printer = printer;
         this.account = account;
         this.statementPrinter = statementPrinter;
     }

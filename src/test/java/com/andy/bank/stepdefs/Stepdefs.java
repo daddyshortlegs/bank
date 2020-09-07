@@ -20,13 +20,13 @@ public class Stepdefs {
     private TransactionDate transactionDate;
     @Mock
     private ConsolePrinter consolePrinter;
-    @Mock
     private Account account;
     private StatementPrinter statementPrinter;
 
     @Before
     public void before() {
         MockitoAnnotations.openMocks(this);
+        account = new Account(transactionDate);
         statementPrinter = new StatementPrinter(consolePrinter);
         accountService = new BankAccountService(transactionDate, consolePrinter, account, statementPrinter);
     }

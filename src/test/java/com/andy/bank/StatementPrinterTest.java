@@ -1,7 +1,6 @@
 package com.andy.bank;
 
 import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
@@ -9,7 +8,6 @@ import org.mockito.MockitoAnnotations;
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.verify;
 
 class StatementPrinterTest {
@@ -65,9 +63,8 @@ class StatementPrinterTest {
 
         verify(consolePrinter).output(
                 "Date       | Amount | Balance\n" +
-                        "13/01/2012 | -10    | -10\n" +
-                        "14/01/2012 | 15     | 5\n"
+                        "14/01/2012 | 15     | 5\n" +
+                        "13/01/2012 | -10    | -10\n"
         );
     }
-
 }
