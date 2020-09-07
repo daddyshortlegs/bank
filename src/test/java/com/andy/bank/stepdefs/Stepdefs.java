@@ -28,7 +28,7 @@ public class Stepdefs {
         MockitoAnnotations.openMocks(this);
         account = new Account(transactionDate);
         statementPrinter = new StatementPrinter(consolePrinter);
-        accountService = new BankAccountService(transactionDate, consolePrinter, account, statementPrinter);
+        accountService = new BankAccountService(account, statementPrinter);
     }
 
     @Given("a client makes a deposit of {int} on {string}")

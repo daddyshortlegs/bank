@@ -27,7 +27,7 @@ public class BankAccountServiceTest {
     public void before() {
         MockitoAnnotations.openMocks(this);
         account = new Account(transactionDate);
-        service = new BankAccountService(transactionDate, printer, account, statementPrinter);
+        service = new BankAccountService(account, statementPrinter);
     }
 
     @Test

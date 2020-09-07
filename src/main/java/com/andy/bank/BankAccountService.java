@@ -4,7 +4,7 @@ public class BankAccountService implements AccountService {
     private Account account;
     private StatementPrinter statementPrinter;
 
-    public BankAccountService(TransactionDate transactionDate, ConsolePrinter printer, Account account, StatementPrinter statementPrinter) {
+    public BankAccountService(Account account, StatementPrinter statementPrinter) {
         this.account = account;
         this.statementPrinter = statementPrinter;
     }

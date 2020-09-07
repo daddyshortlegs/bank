@@ -14,12 +14,16 @@ public class StatementPrinter {
         int balance = 0;
         for (Transaction transaction : transactions) {
             balance += transaction.getAmount();
-            String date = transaction.getDate();
-            String newDate = date.replaceAll("-", "/");
-            output = String.format("%s | %-7d| %d\n", newDate, transaction.getAmount(), balance) + output;
+            output = createRow(balance, transaction) + output;
         }
         output = "Date       | Amount | Balance\n" + output;
 
         consolePrinter.output(output);
+    }
+
+    private String createRow(int balance, Transaction transaction) {
+        String date = transaction.getDate();
+        String newDate = date.replaceAll("-", "/");
+        return String.format("%s | %-7d| %d\n", newDate, transaction.getAmount(), balance);
     }
 }
