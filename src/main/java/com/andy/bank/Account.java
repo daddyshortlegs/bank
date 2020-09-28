@@ -22,11 +22,7 @@ public class Account {
     }
 
     public int getBalance() {
-        int balance = 0;
-        for (Transaction transaction : transactions) {
-            balance += transaction.getAmount();
-        }
-        return balance;
+        return transactions.stream().mapToInt(t -> t.getAmount()).sum();
     }
 
     public List<Transaction> getTransactions() {
